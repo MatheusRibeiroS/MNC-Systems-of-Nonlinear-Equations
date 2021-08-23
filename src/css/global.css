@@ -2,7 +2,8 @@
 :root {
   --primary: #0099ff;
   --primary-dark: #003f92;
-  background-color: #222229;
+  --color-page-background: #222229;
+  background-color: var(--color-page-background);
   color: white; }
 
 * {
