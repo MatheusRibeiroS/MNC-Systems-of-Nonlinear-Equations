@@ -54,6 +54,7 @@
 .config-table {
   width: 100%;
   overflow-x: auto;
+  display: none; // hide by default
   & table {
     margin: 1em 0;
     border-collapse: collapse;

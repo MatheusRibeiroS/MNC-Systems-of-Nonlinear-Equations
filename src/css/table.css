@@ -30,7 +30,8 @@
 
 .config-table {
   width: 100%;
-  overflow-x: auto; }
+  overflow-x: auto;
+  display: none; }
   .config-table table {
     margin: 1em 0;
     border-collapse: collapse; }

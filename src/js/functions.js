@@ -297,8 +297,10 @@ const showResult = (objectResult) => {
 
 const resize = (n) => {
   if (n && n >= 2 && !isNaN(n)) {
+    const divTable = document.querySelector(".config-table");
     const table = document.querySelector("#input-table");
     table.innerHTML = "";
+    divTable.style.display = "unset";
 
     let row = new Array(n);
     let cells = new Array(3);
