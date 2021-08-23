@@ -74,10 +74,15 @@ div::-webkit-scrollbar-thumb {
 .input-menu {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 1em; }
+  align-items: center; }
   .input-menu input {
-    margin: 0 0 10px 0; }
+    width: 100%;
+    margin-bottom: 1em; }
+  .input-menu > div {
+    display: flex;
+    width: 100%; }
+    .input-menu > div > input:last-child {
+      margin-left: 1em; }
 
 .container .checkmark:after {
   left: 9px;

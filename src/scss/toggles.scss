@@ -36,7 +36,7 @@
       left: 0;
       top: 0;
       position: absolute;
-      transition: transform var(--d-t, .3s) var(--d-t-e, ease), opacity var(--d-o, .2s);
+      transition: transform var(--d-t, .2s) var(--d-t-e, ease), opacity var(--d-o, .1s);
     }
     &:checked {
       --b: var(--active);
@@ -130,8 +130,8 @@
   input[type='radio'] {
     border-radius: 50%;
     &:after {
-      width: 19px;
-      height: 19px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: var(--active-inner);
       opacity: 0;

@@ -101,10 +101,16 @@ div::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1em;
-
   & input {
-    margin: 0 0 10px 0;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  & > div {
+    display: flex;
+    width: 100%;
+    & > input:last-child {
+      margin-left: 1em;
+    }
   }
 }
 

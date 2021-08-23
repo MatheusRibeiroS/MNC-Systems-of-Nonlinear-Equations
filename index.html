@@ -33,11 +33,11 @@
           <!-- Feature Buttons -->
           <div class="config">
             <div class="input-menu">
-              <input id="function" type="text" style="width: 100%;" placeholder="Quantidade de equações" />
-              <div style="display: flex; width: 100%;">
-                <input type="number" id="iteracoes" placeholder="Iterações" style="width: 100%;" />
+              <input type="number" id="n" min="2" max="10" placeholder="Quantidade de equações" />
+              <div>
+                <input type="number" id="k" min="10" max="100" placeholder="Iterações" />
+                <input type="number" id="epsilon" min="0.01" max="0.0001" placeholder="Erro Máximo (&epsilon;)" />
               </div>
-              <input type="number" id="epsilon" placeholder="Erro Máximo (&epsilon;)" style="width: 100%;" />
             </div>
             <!-- Calculation Buttons -->
             <div class="buttons"
@@ -66,7 +66,7 @@
                 <div class="select">
                   <ul class="radio-methods">
                     <li>
-                      <input id="radioBtn1" type="radio" name="radio" value="1" checked/>
+                      <input id="radioBtn1" type="radio" name="radio" value="1" checked />
                       <label for="radioBtn1"> Newton </label>
                     </li>
                     <li>
@@ -75,9 +75,6 @@
                     </li>
                   </ul>
                   <div class="buttons" style="flex-direction: column;">
-                    <!-- Select All button -->
-                    <button class="btn button" id="button-info" onclick="selectAll()">
-                      <i class="fad fa-check-double"></i></button>
 
                     <!-- genChart button-->
                     <button class="btn button" id="button-clear" onclick="genChart(getInput())">
