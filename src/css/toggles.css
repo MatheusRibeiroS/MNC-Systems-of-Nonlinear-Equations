@@ -1,0 +1,38 @@
+.toggle-control {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer; }
+  .toggle-control input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+  .toggle-control input:checked ~ .control {
+    background-color: dodgerblue; }
+    .toggle-control input:checked ~ .control:after {
+      left: 25px; }
+  .toggle-control .control {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 40px;
+    border-radius: 10px;
+    background-color: darkgray;
+    transition: background-color 0.15s ease-in; }
+    .toggle-control .control:after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      background: white;
+      transition: left 0.15s ease-in; }
+  .toggle-control > span.function {
+    margin: 0 10px; }

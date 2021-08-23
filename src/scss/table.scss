@@ -1,0 +1,52 @@
+#result-div {
+  padding: 0.5em;
+  overflow: auto;
+
+  .result-table {
+    width: 100%;
+    color: black;
+    border-collapse: collapse;
+
+    & thead {
+      color: white;
+
+      & th {
+        padding: 0.5em;
+        background-color: #0099ff;
+
+        &:first-child {
+          text-align: left;
+          padding-left: 16px;
+          border-radius: 0.5em 0 0 0.5em;
+        }
+
+        &:last-child {
+          border-radius: 0 0.5em 0.5em 0;
+        }
+      }
+    }
+
+    & tbody {
+      & tr {
+        margin: 5px;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+        }
+
+        >td {
+          padding: 5px 15px;
+          white-space: nowrap;
+
+          &:first-child {
+            font-weight: bold;
+          }
+
+          &:last-child {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

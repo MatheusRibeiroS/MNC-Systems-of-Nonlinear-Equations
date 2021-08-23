@@ -1,5 +1,5 @@
-/*
-  Function to create popup for the information button.
+/**
+ * Function to create popup for the information button.
  */
 const infoButton = (input) => {
   const body = document.querySelector("body");
@@ -38,13 +38,259 @@ const infoButton = (input) => {
     `;
 };
 
+/**
+ * returns the mathematical expression formatted using Regex.
+ *
+ * @param {input} string of the unformatted mathematical expression.
+ * @return {output} string of the formatted mathematical expression.
+ */
+function formattingExpression(input) {
+  return input
+    .toLowerCase()
+    .replace(/sen|sin/gi, "Math.sin")
+    .replace(/cos/gi, "Math.cos")
+    .replace(/tg|tan/gi, "Math.tan")
+    .replace(/sinh/gi, "Math.sinh")
+    .replace(/cosh/gi, "Math.cosh")
+    .replace(/tanh/gi, "Math.tanh")
+    .replace(/\^/gi, "**")
+    .replace(/pi/gi, "Math.PI")
+    .replace(/\log\D/gi, "Math.log10(")
+    .replace(/\ln/gi, "Math.log")
+    .replace(/\e/gi, "Math.E");
+}
+
+/**
+ * Function that create function evaluators.
+ */
+function createMathFunction(...args) {
+  const func = args.shift();
+  return new Function(...args, `return ${func};`);
+}
+
+/**
+ * Function to clear all point inputs of the points table.
+ */
 const clearInputs = () => {
   [...document.querySelectorAll(".input-menu input")].map(
     (el) => (el.value = "")
   );
 };
 
+/**
+ * Function to select all Toggle from curved lists.
+ */
 const selectAll = () =>
   [...document.querySelectorAll(".toggles li .toggle-control input")].map(
     (el) => !el.disabled && (el.checked = !el.checked)
   );
+
+/**
+ * Function that generates graphs.
+ * @param { info } object of the chart data.
+ */
+const genChart = ({ func, func_original, a, b }) => {
+  if (func || a || b) {
+    const chartDiv = document.querySelector("#chart-div");
+    const containerDiv = document.querySelector("#container-chart");
+    const chartCanvas = document.createElement("canvas");
+    chartCanvas.id = "chart";
+    chartDiv.innerHTML = "";
+    chartDiv.appendChild(chartCanvas);
+    containerDiv.style.display = "block";
+
+    const labels = [].range(a, b, 0.25);
+    const f = createMathFunction(func, "x");
+    const data_result = labels.map((x) => f(x));
+
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          type: "line",
+          label: `F(x) = ${func_original}`,
+          borderColor: "#222229",
+          backgroundColor: "#222229",
+          cubicInterpolationMode: "monotone",
+          borderWidth: 2,
+          radius: 0,
+          data: data_result,
+        },
+        {
+          type: "line",
+          label: "Area",
+          backgroundColor: "rgba(33,150,243,0.4)",
+          cubicInterpolationMode: "monotone",
+          fill: true,
+          borderWidth: 1,
+          radius: 0,
+          data: data_result,
+        },
+      ],
+    };
+
+    const config = {
+      type: "line",
+      data: data,
+      options: {
+        responsive: true,
+        legend: {
+          position: "top",
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: "Gráfico da Função",
+          },
+          tooltip: {
+            enabled: true,
+            filter: function (tooltipItem) {
+              var dSet = tooltipItem.datasetIndex;
+              if (dSet == 1) {
+                return false;
+              } else {
+                return true;
+              }
+            },
+          },
+        },
+        interaction: {
+          mode: "index",
+          intersect: false,
+        },
+        scale: {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      },
+    };
+
+    new Chart(chartCanvas, config);
+    return;
+  }
+  alert("Entradas inválidas");
+};
+
+/**
+ * Function that captures user input data.
+ * @return { object } Object with input data.
+ */
+const getInput = () => ({
+  func: formattingExpression(document.querySelector("#function").value),
+  func_original: document.querySelector("#function").value,
+  a: Number(document.querySelector("#a").value),
+  b: Number(document.querySelector("#b").value),
+  epsilon: Number(document.querySelector("#epsilon").value),
+});
+
+/**
+ * Função encaminha a chamada dos métodos conforme a seleção do Usuário.
+ * @returns { Object } Object with the results of the integrals obtained by the methods.
+ */
+const whichSelected = () => {
+  const result = {};
+  const onlySelects = [...document.querySelectorAll(".toggle-control input")]
+    .map((el) => el.checked && Number(el.value))
+    .filter(Boolean);
+
+  onlySelects.length != 0 &&
+    onlySelects.forEach((el) => {
+      switch (el) {
+        case 1:
+          // Retângulos à esquerda
+          // ------------------------
+          result.leftRectangles = {
+            methodName: "Retângulos à esquerda",
+            value: leftRectangleRuleMethod(getInput()),
+          };
+          break;
+
+        case 2:
+          // Retângulos à direita
+          // ------------------------
+          result.rightRectangles = {
+            methodName: "Retângulos à direita",
+            value: rightRectangleRuleMethod(getInput()),
+          };
+          break;
+
+        case 3:
+          // Regra dos Trapézios
+          // ------------------------
+          result.trapezoids = {
+            methodName: "Regra dos Trapézios",
+            value: trapezoidolRuleMethod(getInput()),
+          };
+          break;
+
+        case 4:
+          // Regra 1/3 de Simpson
+          // ------------------------
+          result.simpson13 = {
+            methodName: "Regra 1/3 de Simpson",
+            value: simpson13RuleMethod(getInput()),
+          };
+          break;
+
+        case 5:
+          // Regra 3/8 de Simpson
+          // ------------------------
+          result.simpson38 = {
+            methodName: "Regra 3/8 de Simpson",
+            value: simpson38RuleMethod(getInput()),
+          };
+          break;
+
+        case 6:
+          // Quadratura de Gauss
+          // ------------------------
+          result.quadrature = {
+            methodName: "Quadratura de Gauss",
+            value: GaussQuadratureMethod(getInput()),
+          };
+          break;
+      }
+    });
+  return result;
+};
+
+/**
+ * Função que possibilita a visualizaçào na aplicação.
+ * @param { Object } Object with the results of the integrals obtained by the methods.
+ */
+const showResult = (objectResult) => {
+  const resultDiv = document.querySelector("#result-div");
+  resultDiv.innerHTML = "";
+  let content = "";
+
+  /*
+   * Creates table contents, from the results object.
+   */
+  Object.entries(objectResult).forEach(([key, value]) => {
+    content += `<tr>
+            <td>${value.methodName}</td>
+            <td>${
+              typeof value.value != "string"
+                ? value.value.toFixed(9)
+                : value.value
+            }</td>
+          </tr>`;
+  });
+
+  const resultTable = document.createElement("table");
+  resultTable.className = "result-table";
+  resultTable.innerHTML = `
+    <thead>
+      <tr>
+        <th>Método</th>
+        <th>Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${content}
+    </tbody>
+  `;
+  resultDiv.appendChild(resultTable);
+  resultDiv.style.display = "block";
+};

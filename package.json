@@ -1,0 +1,23 @@
+{
+  "name": "mnc-systems-of-nonlinear-equations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass -w ./src/scss -o ./src/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusRibeiroS/MNC-Systems-of-Nonlinear-Equations.git"
+  },
+  "author": "Matheus dos Santos Ribeiro, Cassiano Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusRibeiroS/MNC-Systems-of-Nonlinear-Equations/issues"
+  },
+  "homepage": "https://github.com/MatheusRibeiroS/MNC-Systems-of-Nonlinear-Equations#readme",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
