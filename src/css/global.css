@@ -18,6 +18,12 @@ body {
   display: flex;
   justify-content: center; }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 input {
   border: none;
   background: #fafafa;

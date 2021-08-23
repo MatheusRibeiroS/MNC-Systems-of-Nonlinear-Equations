@@ -84,6 +84,9 @@ div::-webkit-scrollbar-thumb {
     .input-menu > div > input:not(:first-child) {
       margin-left: 1em; }
 
+.hahau {
+  width: 460px; }
+
 .container .checkmark:after {
   left: 9px;
   top: 5px;
@@ -143,12 +146,9 @@ div .options-menu {
       margin-right: 0.5em; }
 
 @media (min-width: 1000px) {
-  .main {
-    width: unset; }
   .hahau {
     display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 20px; }
+    grid-template-columns: auto auto; }
     .hahau > div {
       margin: 0;
       width: 460px; }

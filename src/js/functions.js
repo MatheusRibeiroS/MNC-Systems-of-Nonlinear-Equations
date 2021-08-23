@@ -301,7 +301,7 @@ const resize = (n) => {
     table.innerHTML = "";
 
     let row = new Array(n);
-    let cells = new Array(2);
+    let cells = new Array(3);
 
     Array.from({ length: n + 1 }, (_, k) => k).forEach((i) => {
       row[i] = document.createElement("tr");
@@ -311,7 +311,7 @@ const resize = (n) => {
     });
 
     // Labels
-    labels = ["i", "Equações f(x)", "Resultados (x)"];
+    labels = ["i", "Equações f(x)", "Resultados (y)"];
     labels.forEach((el) => {
       cell = document.createElement("td");
       cell.innerHTML = el;
@@ -333,9 +333,7 @@ const resize = (n) => {
     row.forEach((el) => {
       table.appendChild(el);
     });
-    console.log(row, row.length);
-
-    // for (let index = 0; index < n; index++) table.appendChild(row[index]);
+    
     return;
   }
   alert("Inputs inválidos");
