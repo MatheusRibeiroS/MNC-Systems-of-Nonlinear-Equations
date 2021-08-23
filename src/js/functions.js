@@ -294,3 +294,50 @@ const showResult = (objectResult) => {
   resultDiv.appendChild(resultTable);
   resultDiv.style.display = "block";
 };
+
+const resize = (n) => {
+  if (n && n >= 2 && !isNaN(n)) {
+    const table = document.querySelector("#input-table");
+    table.innerHTML = "";
+
+    let row = new Array(n);
+    let cells = new Array(2);
+
+    Array.from({ length: n + 1 }, (_, k) => k).forEach((i) => {
+      row[i] = document.createElement("tr");
+    });
+    Array.from({ length: 3 }, (_, k) => k).forEach((i) => {
+      cells[i] = document.createElement("td");
+    });
+
+    // Labels
+    labels = ["i", "Equações f(x)", "Resultados (x)"];
+    labels.forEach((el) => {
+      cell = document.createElement("td");
+      cell.innerHTML = el;
+      row[0].appendChild(cell);
+    });
+
+    // Inputs
+    Array.from({ length: n }, (v, k) => k).forEach((i) => {
+      [0, 1, 2].forEach((j) => {
+        cell = document.createElement("td");
+        if (j == 0) cell.innerHTML = `<span>${i}</span>`;
+        if (j == 1)
+          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="x^2 + ${i}" />`;
+        if (j == 2)
+          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="${i}" />`;
+        row[i + 1].appendChild(cell);
+      });
+    });
+    row.forEach((el) => {
+      table.appendChild(el);
+    });
+    console.log(row, row.length);
+
+    // for (let index = 0; index < n; index++) table.appendChild(row[index]);
+    return;
+  }
+  alert("Inputs inválidos");
+  return;
+};
