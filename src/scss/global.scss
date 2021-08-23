@@ -3,6 +3,7 @@
   --primary-dark: #003f92;
   background-color: #222229;
   color: white;
+  @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 }
 
 * {
@@ -13,7 +14,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 body {

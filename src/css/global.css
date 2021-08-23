@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 :root {
   --primary: #0099ff;
   --primary-dark: #003f92;
@@ -11,7 +12,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: "Montserrat", sans-serif; }
+  font-family: 'Inter', Arial, sans-serif; }
 
 body {
   display: flex;

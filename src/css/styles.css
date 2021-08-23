@@ -90,12 +90,6 @@ div::-webkit-scrollbar-thumb {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
-.radio-methods {
-  margin: 1em 0; }
-  .radio-methods li {
-    display: flex;
-    align-items: center; }
-
 div .options-menu {
   color: black; }
 

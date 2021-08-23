@@ -9,9 +9,9 @@
 
   <link rel="stylesheet" href="./src/css/global.css">
   <link rel="stylesheet" href="./src/css/styles.css">
-  <link rel="stylesheet" href="./src/css/toggles.css">
   <link rel="stylesheet" href="./src/css/modal.css">
   <link rel="stylesheet" href="./src/css/table.css">
+  <link rel="stylesheet" href="./src/css/toggles.css">
   <title>MNC-Systems-of-Nonlinear-Equations</title>
 </head>
 
@@ -64,8 +64,15 @@
                   <div class="line"></div>
                 </div>
                 <div class="select">
-                  <ul class="toggles">
-                    <!-- Radio Button -->
+                  <ul class="radio-methods">
+                    <li>
+                      <input id="radioBtn1" type="radio" name="radio" value="1" checked/>
+                      <label for="radioBtn1"> Newton </label>
+                    </li>
+                    <li>
+                      <input id="radioBtn2" type="radio" name="radio" value="2" checked />
+                      <label for="radioBtn2"> Newton Modificado </label>
+                    </li>
                   </ul>
                   <div class="buttons" style="flex-direction: column;">
                     <!-- Select All button -->

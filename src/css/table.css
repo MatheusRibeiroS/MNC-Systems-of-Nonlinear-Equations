@@ -1,0 +1,29 @@
+#result-div {
+  padding: 0.5em;
+  overflow: auto; }
+  #result-div .result-table {
+    width: 100%;
+    color: black;
+    border-collapse: collapse; }
+    #result-div .result-table thead {
+      color: white; }
+      #result-div .result-table thead th {
+        padding: 0.5em;
+        background-color: #0099ff; }
+        #result-div .result-table thead th:first-child {
+          text-align: left;
+          padding-left: 16px;
+          border-radius: 0.5em 0 0 0.5em; }
+        #result-div .result-table thead th:last-child {
+          border-radius: 0 0.5em 0.5em 0; }
+    #result-div .result-table tbody tr {
+      margin: 5px; }
+      #result-div .result-table tbody tr:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.24); }
+      #result-div .result-table tbody tr > td {
+        padding: 5px 15px;
+        white-space: nowrap; }
+        #result-div .result-table tbody tr > td:first-child {
+          font-weight: bold; }
+        #result-div .result-table tbody tr > td:last-child {
+          text-align: center; }
