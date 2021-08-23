@@ -5,25 +5,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/css/all.min.css">
+
   <link rel="stylesheet" href="./src/css/global.css">
   <link rel="stylesheet" href="./src/css/styles.css">
+  <link rel="stylesheet" href="./src/css/toggles.css">
+  <link rel="stylesheet" href="./src/css/modal.css">
+  <link rel="stylesheet" href="./src/css/table.css">
   <title>MNC-Systems-of-Nonlinear-Equations</title>
 </head>
 
 <body>
-  <div class="main"></div>
-  <script src="./src/js/functions.js"></script>
-  <script src="./src/js/methods.js"></script>
-</body>
-
-</html>
-
-<body>
   <div class="main">
-    
+
     <!-- Application header -->
     <div class="title">
-      <h1>MNC - Systems of Nonlinear Equations</h1>
+      <h1>Systems of Nonlinear Equations</h1>
       <span>Aplicação para calcular sistemas de equações não lineares</span>
     </div>
     <div class="hahau">
@@ -68,61 +65,14 @@
                 </div>
                 <div class="select">
                   <ul class="toggles">
-                    <li>
-                     
-                      <label class="toggle-control">
-                        <input type="checkbox" value="1" checked>
-                        <span class="control"></span>
-                        <span class="function"></span>
-                      </label>
-                    </li>
-                    <li>
-                      
-                      <label class="toggle-control">
-                        <input type="checkbox" value="2">
-                        <span class="control"></span>
-                        <span class="function"></span>
-                      </label>
-                    </li>
-                    <li>
-                      
-                      <label class="toggle-control">
-                        <input type="checkbox" value="3">
-                        <span class="control"></span>
-                        <span class="function"></span>
-                      </label>
-                    </li>
-                    <li>
-                      
-                      <label class="toggle-control">
-                        <input type="checkbox" value="4">
-                        <span class="control"></span>
-                        <span class="function"></span>
-                      </label>
-                    </li>
-                    <li>
-                      
-                      <label class="toggle-control">
-                        <input type="checkbox" value="5">
-                        <span class="control"></span>
-                        <span class="function"></span>
-                      </label>
-                    </li>
-                    <li>
-                      
-                      <label class="toggle-control">
-                        <input type="checkbox" value="6">
-                        <span class="control"></span>
-                        <span class="function"></span>
-                      </label>
-                    </li>
+                    <!-- Radio Button -->
                   </ul>
                   <div class="buttons" style="flex-direction: column;">
                     <!-- Select All button -->
                     <button class="btn button" id="button-info" onclick="selectAll()">
                       <i class="fad fa-check-double"></i></button>
-                      
-                    <!-- Disabled genChart button-->
+
+                    <!-- genChart button-->
                     <button class="btn button" id="button-clear" onclick="genChart(getInput())">
                       <i class="fas fa-chart-line"></i></button>
                   </div>
@@ -152,3 +102,5 @@
   <script src="./src/js/functions.js"></script>
   <script src="./src/js/methods.js"></script>
 </body>
+
+</html>
