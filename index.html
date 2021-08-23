@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/css/global.css">
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <title>MNC-Systems-of-Nonlinear-Equations</title>
+</head>
+
+<body>
+  <div class="main"></div>
+  <script src="./src/js/functions.js"></script>
+  <script src="./src/js/methods.js"></script>
+</body>
+
+</html>
+
+<body>
+  <div class="main">
+    
+    <!-- Application header -->
+    <div class="title">
+      <h1>MNC - Systems of Nonlinear Equations</h1>
+      <span>Aplicação para calcular sistemas de equações não lineares</span>
+    </div>
+    <div class="hahau">
+      <!-- Application content -->
+      <div class="content">
+
+        <!-- Options menu -->
+        <div class="options-menu">
+
+          <!-- Feature Buttons -->
+          <div class="config">
+            <div class="input-menu">
+              <input id="function" type="text" style="width: 100%;" placeholder="Quantidade de equações" />
+              <div style="display: flex; width: 100%;">
+                <input type="number" id="b" placeholder="Iterações" style="width: 100%;" />
+              </div>
+              <input type="number" id="epsilon" placeholder="Erro Máximo (&epsilon;)" style="width: 100%;" />
+            </div>
+            <!-- Calculation Buttons -->
+            <div class="buttons"
+              style="display: inline-flex; width: 100%; align-items: center; margin: 0 0.5em 1em 0.5em;">
+              <!-- Info Button -->
+              <button class="btn" id="button-info" onclick="infoButton()"><i class="fas fa-info-circle"></i></button>
+              <a href="https://pt.wikipedia.org/wiki/Matemática_não-linear" target="__blank">
+                <button class="btn button" id="button-docs" style="margin-right: 1em;"><i
+                    class="fas fa-file-alt"></i></button>
+              </a>
+              <!-- Clear all inputs Button -->
+              <button class="btn" id="button-clear" onclick="clearInputs()"><i class="fas fa-trash"></i></button>
+              <!-- Calculate Button -->
+              <button class="btn" id="button-calculate" style="width: 100%" onclick="showResult(whichSelected())">
+                <i class="fas fa-calculator"></i> Calcular </button>
+            </div>
+
+            <!-- Toggle checked Methods -->
+            <div class="toggle-checked">
+              <div>
+                <div class="sub-title">
+                  <div class="line"></div>
+                  <span class="divider-methods">Métodos</span>
+                  <div class="line"></div>
+                </div>
+                <div class="select">
+                  <ul class="toggles">
+                    <li>
+                     
+                      <label class="toggle-control">
+                        <input type="checkbox" value="1" checked>
+                        <span class="control"></span>
+                        <span class="function"></span>
+                      </label>
+                    </li>
+                    <li>
+                      
+                      <label class="toggle-control">
+                        <input type="checkbox" value="2">
+                        <span class="control"></span>
+                        <span class="function"></span>
+                      </label>
+                    </li>
+                    <li>
+                      
+                      <label class="toggle-control">
+                        <input type="checkbox" value="3">
+                        <span class="control"></span>
+                        <span class="function"></span>
+                      </label>
+                    </li>
+                    <li>
+                      
+                      <label class="toggle-control">
+                        <input type="checkbox" value="4">
+                        <span class="control"></span>
+                        <span class="function"></span>
+                      </label>
+                    </li>
+                    <li>
+                      
+                      <label class="toggle-control">
+                        <input type="checkbox" value="5">
+                        <span class="control"></span>
+                        <span class="function"></span>
+                      </label>
+                    </li>
+                    <li>
+                      
+                      <label class="toggle-control">
+                        <input type="checkbox" value="6">
+                        <span class="control"></span>
+                        <span class="function"></span>
+                      </label>
+                    </li>
+                  </ul>
+                  <div class="buttons" style="flex-direction: column;">
+                    <!-- Select All button -->
+                    <button class="btn button" id="button-info" onclick="selectAll()">
+                      <i class="fad fa-check-double"></i></button>
+                      
+                    <!-- Disabled genChart button-->
+                    <button class="btn button" id="button-clear" onclick="genChart(getInput())">
+                      <i class="fas fa-chart-line"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="result" id="result-div">
+        <div class="result-content"></div>
+      </div>
+
+      <div id="container-chart" class="chart" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+        <div id="chart-div">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.js"></script>
+  <script src="./src/js/functions.js"></script>
+  <script src="./src/js/methods.js"></script>
+</body>
