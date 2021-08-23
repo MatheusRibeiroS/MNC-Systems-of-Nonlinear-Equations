@@ -333,9 +333,16 @@ const resize = (n) => {
     row.forEach((el) => {
       table.appendChild(el);
     });
-    
+
     return;
   }
   alert("Inputs inválidos");
   return;
+};
+
+const fillInputs = (target, content) => {
+  const inputs = document.querySelectorAll(target);
+  inputs.forEach((el) => {
+    el.value = content;
+  });
 };
