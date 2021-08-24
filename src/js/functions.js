@@ -270,11 +270,10 @@ const showResult = (objectResult) => {
   Object.entries(objectResult).forEach(([key, value]) => {
     content += `<tr>
             <td>${value.methodName}</td>
-            <td>${
-              typeof value.value != "string"
-                ? value.value.toFixed(9)
-                : value.value
-            }</td>
+            <td>${typeof value.value != "string"
+        ? value.value.toFixed(9)
+        : value.value
+      }</td>
           </tr>`;
   });
 
@@ -320,10 +319,14 @@ const resize = (n) => {
       row[0].appendChild(cell);
     });
 
+
     // Inputs
     Array.from({ length: n }, (v, k) => k).forEach((i) => {
+      // fazer o espaço para as (n) estimativas
+      
       [0, 1, 2].forEach((j) => {
         cell = document.createElement("td");
+
         if (j == 0) cell.innerHTML = `<span>${i}</span>`;
         if (j == 1)
           cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="x^2 + ${i}" />`;
