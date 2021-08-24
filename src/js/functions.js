@@ -270,10 +270,11 @@ const showResult = (objectResult) => {
   Object.entries(objectResult).forEach(([key, value]) => {
     content += `<tr>
             <td>${value.methodName}</td>
-            <td>${typeof value.value != "string"
-        ? value.value.toFixed(9)
-        : value.value
-      }</td>
+            <td>${
+              typeof value.value != "string"
+                ? value.value.toFixed(9)
+                : value.value
+            }</td>
           </tr>`;
   });
 
@@ -304,10 +305,10 @@ const resize = (n) => {
     let row = new Array(n);
     let cells = new Array(3);
 
-    Array.from({ length: n + 1 }, (_, k) => k).forEach((i) => {
+    ArrayFrom(n + 1).forEach((i) => {
       row[i] = document.createElement("tr");
     });
-    Array.from({ length: 3 }, (_, k) => k).forEach((i) => {
+    ArrayFrom(3).forEach((i) => {
       cells[i] = document.createElement("td");
     });
 
@@ -319,12 +320,11 @@ const resize = (n) => {
       row[0].appendChild(cell);
     });
 
-
     // Inputs
-    Array.from({ length: n }, (v, k) => k).forEach((i) => {
+    ArrayFrom(n).forEach((i) => {
       // fazer o espaço para as (n) estimativas
-      
-      [0, 1, 2].forEach((j) => {
+
+      ArrayFrom(3).forEach((j) => {
         cell = document.createElement("td");
 
         if (j == 0) cell.innerHTML = `<span>${i}</span>`;
@@ -351,3 +351,8 @@ const fillInputs = (target, content) => {
     el.value = content;
   });
 };
+
+const ArrayFrom = (...args) =>
+  args.length == 1
+    ? Array.from({ length: args[0] }, (_, k) => k)
+    : Array.from({ length: args[1] - args[0] + 1 }, (_, k) => k + args[0]);
