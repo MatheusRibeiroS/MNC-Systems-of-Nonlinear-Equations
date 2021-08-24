@@ -6,6 +6,7 @@ function calculate() {
   for (let i = 0; i < n; i++) {
     let input = document.getElementById(`input-${i}-1`).value;
     let result = document.getElementById(`input-${i}-2`).value;
+    let inputTable = document.getElementById(`input-${i}-3`).value;
     if (!input) {
       alert(`Insira uma equação na área ${i + 1}.`);
       return;
@@ -17,7 +18,7 @@ function calculate() {
     equations[i] = new Function(`x`, `return ` + formattingExpression(input) + `-(` + formattingExpression(result) + `);`);
 
     // fazer o campo de estimativa no HTML
-    estimate[i] = parseFloat(document.getElementById(`est${i}`).value);
+    estimate[i] = parseFloat(document.getElementById(inputTable).value);
     if (isNaN(estimate[i])) {
       alert(`Insira um número real como estimativa inicial do x[${i}]`);
       return;
