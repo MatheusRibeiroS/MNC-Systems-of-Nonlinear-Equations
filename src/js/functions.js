@@ -254,7 +254,7 @@ const whichSelected = () => {
 };
 
 /**
- * Função que possibilita a visualizaçào na aplicação.
+ * Which enables visualization in the application.
  * @param { Object } Object with the results of the integrals obtained by the methods.
  */
 const showResult = (objectResult) => {
@@ -293,6 +293,10 @@ const showResult = (objectResult) => {
   resultDiv.style.display = "block";
 };
 
+/**
+ * Function for creation of the entries table
+ * @param { Number } n - Quantity of equations
+ */
 const resize = (n) => {
   if (n && n >= 2 && !isNaN(n)) {
     const divTable = document.querySelector(".config-table");
@@ -333,6 +337,11 @@ const resize = (n) => {
   return;
 };
 
+/**
+ * Função para preencher com inputs com o conteúdo.
+ * @param { String } target - Which should be filled.
+ * @param { Number } content - Content to be filled.
+ */
 const fillInputs = (target, content) => {
   const inputs = document.querySelectorAll(target);
   inputs.forEach((el) => {
@@ -344,3 +353,15 @@ const ArrayFrom = (...args) =>
   args.length == 1
     ? Array.from({ length: args[0] }, (_, k) => k)
     : Array.from({ length: args[1] - args[0] + 1 }, (_, k) => k + args[0]);
+
+const getData = () => {
+  const functions = [
+    ...document.querySelectorAll("#input-table td:nth-child(2) input"),
+  ].map((el) => el.value);
+
+  return {
+    functions,
+    a: document.querySelector("#a").value,
+    b: document.querySelector("#b").value,
+  };
+};
