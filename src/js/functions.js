@@ -313,7 +313,7 @@ const resize = (n) => {
     });
 
     // Labels
-    labels = ["i", "Equações f(x)", "Resultados (y)"];
+    labels = ["i", "Equações f(x)", "Y"];
     labels.forEach((el) => {
       cell = document.createElement("td");
       cell.innerHTML = el;
