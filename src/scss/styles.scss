@@ -40,10 +40,7 @@ div::-webkit-scrollbar-thumb {
 .buttons {
   display: flex;
   justify-content: center;
-
-  &:last-child {
-    margin: 0;
-  }
+  margin: 0.5em 0;
 
   > .btn {
     font-weight: bold;

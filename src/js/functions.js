@@ -71,10 +71,8 @@ function createMathFunction(...args) {
 /**
  * Function to clear all point inputs of the points table.
  */
-const clearInputs = () => {
-  [...document.querySelectorAll(".input-menu input")].map(
-    (el) => (el.value = "")
-  );
+const clearInputs = (context = ".input-menu input") => {
+  [...document.querySelectorAll(context)].forEach((el) => (el.value = ""));
 };
 
 /**

@@ -63,57 +63,48 @@
             <!-- Toggle checked Methods -->
             <div class="toggle-checked">
               <div>
-                <div class="sub-title">
-                  <div class="line"></div>
-                  <span class="divider-methods">Método</span>
-                  <div class="line"></div>
-                </div>
-                <!----
-                <div class="select">
-                  <ul class="radio-methods">
-                    <li>
-                      <input id="radioBtn1" type="radio" name="radio" value="1" checked />
-                      <label for="radioBtn1"> Newton </label>
-                    </li>
-                    <li>
-                      <input id="radioBtn2" type="radio" name="radio" value="2" checked />
-                      <label for="radioBtn2"> Newton Modificado </label>
-                    </li>
-                  </ul>
-                -->
-                  <div class="buttons">
-
-                    <!-- genChart button-->
-                    <button class="btn" id="button-chart" onclick="genChart(getInput())"
-                      title="Gere os gráficos das funções">
-                      <i class="fas fa-chart-line"></i></button>
-                    <!-- fill inputs with zero -->
-                    <button class="btn" id="button-chart" onclick="fillInputs('#input-table td:last-child input', 0)"
-                      title="Complete a coluna de resultados com 0">
-                      <i class="fas fa-fill"></i></button>
+                <!-- Título aqui pohaaa
+                  <div class="sub-title">
+                    <div class="line"></div>
+                    <span class="divider-methods">Método</span>
+                    <div class="line"></div>
                   </div>
+               -->
+                <div class="buttons">
+                  <!-- genChart button-->
+                  <button class="btn" id="button-chart" onclick="genChart(getInput())"
+                    title="Gere os gráficos das funções">
+                    <i class="fas fa-chart-line"></i></button>
+                  <!-- fill inputs with zero -->
+                  <button class="btn" id="button-fillZeroes" onclick="fillInputs('#input-table td:last-child input', 0)"
+                    title="Complete a coluna de resultados com 0">
+                    <i class="fas fa-fill"></i></button>
+                  <!-- Clear all inputs Button -->
+                  <button class="btn" id="button-clearTableInputs" title="Limpe todos as entradas da tabela abaixo"
+                    onclick="clearInputs('#input-table input')"><i class="fas fa-trash"></i></button>
                 </div>
               </div>
             </div>
-
-          </div>
-
-          <div class="config-table">
-            <table id="input-table"></table>
           </div>
 
         </div>
-      </div>
 
-      <div class="result" id="result-div">
-        <div class="result-content"></div>
-      </div>
-
-      <div id="container-chart" class="chart" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
-        <div id="chart-div">
+        <div class="config-table">
+          <table id="input-table"></table>
         </div>
+
       </div>
     </div>
+
+    <div class="result" id="result-div">
+      <div class="result-content"></div>
+    </div>
+
+    <div id="container-chart" class="chart" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+      <div id="chart-div">
+      </div>
+    </div>
+  </div>
   </div>
 
 
