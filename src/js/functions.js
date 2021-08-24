@@ -301,7 +301,7 @@ const resize = (n) => {
     divTable.style.display = "unset";
 
     const row = new Array(n),
-      labels = ["i", "Equações f(x)", "Y"];
+      labels = ["i", "Equações f(x)", "Y", "estimativa"];
 
     ArrayFrom(n + 1).forEach((i) => {
       row[i] = document.createElement("tr");
@@ -321,6 +321,8 @@ const resize = (n) => {
           cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="x^2 + ${i}" />`;
         else if (j == 2)
           cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="${i}" />`;
+        else if (j == 3)
+        cell.innerHTML = `<input type="number" id="input-${i}-${j}" value="${i}" />`;
         row[i + 1].appendChild(cell);
       });
       table.appendChild(row[i]);
