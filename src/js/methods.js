@@ -1,4 +1,4 @@
-let n, error, iterations, equations, estimate;
+let equations, iterations, estimate, n, error;
 
 function calculate() {
   equations = new Array(n);
@@ -29,28 +29,29 @@ function calculate() {
 
 
 function subtractVector(a, b) {
-  let l = a.length;
-  for (let i = 0; i < l; i++) {
+  let vectorSize = a.length;
+  for (let i = 0; i < vectorSize; i++) {
     a[i] -= b[i] * 0.5;
   }
   return a;
 }
 
 function GradientMatrix() {
-  let J = new Array(n), estimate_aux = estimate;
+  let X = new Array(n);
+  let aux = estimate;
   let h = 1e-10;
   for (let i = 0; i < n; i++) {
-    J[i] = new Array(n);
+    X[i] = new Array(n);
     for (let j = 0; j < n; j++) {
-      estimate_aux[j] += h;
-      J[i][j] = equations[i](estimate_aux);
-      estimate_aux[j] -= 2 * h;
-      J[i][j] -= equations[i](estimate_aux);
-      estimate_aux[j] += h;
-      J[i][j] /= (2 * h);
+      aux[j] += h;
+      X[i][j] = equations[i](aux);
+      aux[j] -= 2 * h;
+      X[i][j] -= equations[i](aux);
+      aux[j] += h;
+      X[i][j] /= (2 * h);
     }
   }
-  return J;
+  return X;
 }
 
 function totalPivoGauss(A, b) {
@@ -117,19 +118,23 @@ function totalPivoGauss(A, b) {
 }
 
 function gaussMethod() {
-  let estimate_aux, aux;
-  let f = new Array(n);
-  estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(), f));
+  let X = new Array(n);
+  let estimateAux, aux;
+
+  for (let i = 0; i < n; i++) {
+    X[i] = equations[i](estimate);
+  }
+  estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(), X));
   do {
-    estimate_aux = [...estimate];
+    estimateAux = [...estimate];
     for (let i = 0; i < n; i++) {
-      f[i] = equations[i](estimate);
+      X[i] = equations[i](estimate);
     }
-    estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(), f));
+    estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(), X));
     iterations--;
     aux = false;
     for (let i = 0; i < n; i++)
-      if (Math.abs(estimate[i] - estimate_aux[i]) > error)
+      if (Math.abs(estimate[i] - estimateAux[i]) > error)
         aux = true;
   } while (iterations > 0 && aux);
   return estimate;
