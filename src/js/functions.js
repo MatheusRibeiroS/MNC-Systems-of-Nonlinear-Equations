@@ -302,46 +302,34 @@ const resize = (n) => {
     table.innerHTML = "";
     divTable.style.display = "unset";
 
-    let row = new Array(n);
-    let cells = new Array(3);
+    const row = new Array(n),
+      labels = ["i", "Equações f(x)", "Y"];
 
     ArrayFrom(n + 1).forEach((i) => {
       row[i] = document.createElement("tr");
     });
-    ArrayFrom(3).forEach((i) => {
-      cells[i] = document.createElement("td");
-    });
 
-    // Labels
-    labels = ["i", "Equações f(x)", "Y"];
     labels.forEach((el) => {
       cell = document.createElement("td");
       cell.innerHTML = el;
       row[0].appendChild(cell);
     });
 
-    // Inputs
     ArrayFrom(n).forEach((i) => {
-      // fazer o espaço para as (n) estimativas
-
-      ArrayFrom(3).forEach((j) => {
+      ArrayFrom(labels.length).forEach((j) => {
         cell = document.createElement("td");
-
         if (j == 0) cell.innerHTML = `<span>${i}</span>`;
-        if (j == 1)
+        else if (j == 1)
           cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="x^2 + ${i}" />`;
-        if (j == 2)
+        else if (j == 2)
           cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="${i}" />`;
         row[i + 1].appendChild(cell);
       });
+      table.appendChild(row[i]);
     });
-    row.forEach((el) => {
-      table.appendChild(el);
-    });
-
     return;
   }
-  alert("Inputs inválidos");
+  alert("inputs inválidos");
   return;
 };
 
