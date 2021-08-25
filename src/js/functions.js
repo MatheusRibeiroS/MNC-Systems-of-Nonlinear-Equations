@@ -183,7 +183,6 @@ const getInput = () => ({
   epsilon: Number(document.querySelector("#epsilon").value),
 });
 
-
 /**
  * Which enables visualization in the application.
  * @param { Object } Object with the results of the integrals obtained by the methods.
@@ -230,14 +229,12 @@ const showResult = (objectResult) => {
  */
 const resize = (n) => {
   if (n && n >= 2 && !isNaN(n) && n <= 10) {
-    n++;
-    const divTable = document.querySelector(".config-table");
+    AllowDiv(".config-table");
     const table = document.querySelector("#input-table");
     table.innerHTML = "";
-    divTable.style.display = "unset";
 
-    const row = new Array(n),
-      labels = ["i", "Equações f(x)", "Y", "estimativa"];
+    const row = new Array(n + 1),
+      labels = ["i", "Equações f(x)", "Y", "X"];
 
     ArrayFrom(n + 1).forEach((i) => {
       row[i] = document.createElement("tr");
@@ -249,17 +246,17 @@ const resize = (n) => {
       row[0].appendChild(cell);
     });
 
-    ArrayFrom(n).forEach((i) => {
+    row.forEach((_, i) => {
       ArrayFrom(labels.length).forEach((j) => {
         cell = document.createElement("td");
         if (j == 0) cell.innerHTML = `<span>${i}</span>`;
         else if (j == 1)
-          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="x^2 + ${i}" style="margin-right: 5em"/>`;
+          cell.innerHTML = `<input type="text" id="input_function-${i}-${j}" value="x^2 + ${i}"/>`;
         else if (j == 2)
-          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="${i}" style="margin-right: 5em"/>`;
+          cell.innerHTML = `<input type="text" id="input_Y-${i}-${j}" value="${i}"/>`;
         else if (j == 3)
-          cell.innerHTML = `<input type="number" id="input-${i}-${j}" value="${i}" style="margin-right: 5em"/>`;
-        row[i + 1].appendChild(cell);
+          cell.innerHTML = `<input type="number" id="input_X-${i}-${j}" value="${i}"/>`;
+        if (i != 0) row[i].appendChild(cell);
       });
       table.appendChild(row[i]);
     });
@@ -300,5 +297,5 @@ const getData = () => {
 
 const AllowDiv = (target) => {
   const div = document.querySelector(target);
-  div.style.display = "unset";
+  div.style.display = "block";
 };

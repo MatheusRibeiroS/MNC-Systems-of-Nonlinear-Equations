@@ -24,7 +24,6 @@ function calculate() {
       return;
     }
   }
-  //document.getElementById(`solution`).innerText = gaussMethod();
   showResult(gaussMethod());
 }
 
