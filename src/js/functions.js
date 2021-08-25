@@ -92,6 +92,7 @@ const genChart = ({ func, func_original, a, b }) => {
     const chartDiv = document.querySelector("#chart-div");
     const containerDiv = document.querySelector("#container-chart");
     const chartCanvas = document.createElement("canvas");
+    document.querySelector("#inputs-chart").style.display = "none";
     chartCanvas.id = "chart";
     chartDiv.innerHTML = "";
     chartDiv.appendChild(chartCanvas);
@@ -106,23 +107,13 @@ const genChart = ({ func, func_original, a, b }) => {
       datasets: [
         {
           type: "line",
-          label: `F(x) = ${func_original}`,
+          label: `F(x) = ${func_original[i]}`,
           borderColor: "#222229",
           backgroundColor: "#222229",
           cubicInterpolationMode: "monotone",
           borderWidth: 2,
           radius: 0,
-          data: data_result,
-        },
-        {
-          type: "line",
-          label: "Area",
-          backgroundColor: "rgba(33,150,243,0.4)",
-          cubicInterpolationMode: "monotone",
-          fill: true,
-          borderWidth: 1,
-          radius: 0,
-          data: data_result,
+          data: labels.map((x) => f(x)),
         },
       ],
     };
@@ -199,6 +190,7 @@ const getInput = () => ({
  */
 const showResult = (target, arrayResult) => {
   const targetElement = document.querySelector(target);
+  ({ func_original } = getInput());
   targetElement.innerHTML = "";
   let content = "";
 
@@ -207,8 +199,8 @@ const showResult = (target, arrayResult) => {
    */
   arrayResult.forEach((el, index) => {
     content += `<tr>
-                  <td>${func[index]}</td>
-                  <td>${el}</td>
+                  <td><span>\\[ ${func_original[index]} \\]</span></td>
+                  <td><span>\\[ ${el} \\]</span></td>
                 </tr>`;
   });
 
@@ -225,7 +217,14 @@ const showResult = (target, arrayResult) => {
       ${content}
     </tbody>
   `;
-  targetElement.appendChild(resultTable);
+
+  // Modify Dom and load MathJax
+  MathJax.typesetPromise()
+    .then(() => {
+      targetElement.appendChild(resultTable);
+      MathJax.typesetPromise();
+    })
+    .catch((err) => console.log(err.message));
   targetElement.style.display = "block";
 };
 
@@ -235,7 +234,7 @@ const showResult = (target, arrayResult) => {
  */
 const resize = (n) => {
   if (n && n >= 2 && !isNaN(n) && n <= 10) {
-    AllowDiv(".config-table");
+    AllowElement(".config-table");
     const table = document.querySelector("#input-table");
     table.innerHTML = "";
 
@@ -303,7 +302,9 @@ const getData = () => {
   };
 };
 
-const AllowDiv = (target) => {
-  const div = document.querySelector(target);
-  div.style.display = "block";
+const AllowElement = (target) => {
+  const Element = document.querySelector(target);
+  Element.style.display == "block"
+    ? (Element.style.display = "none")
+    : (Element.style.display = "block");
 };

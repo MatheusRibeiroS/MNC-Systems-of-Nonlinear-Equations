@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./src/css/all.min.css">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link rel="stylesheet" href="./src/css/main.css">
 
@@ -75,7 +76,7 @@
                 </div>
                 <div class="buttons">
                   <!-- genChart button-->
-                  <button class="btn" id="button-chart" onclick="AllowDiv('#inputs-chart');"
+                  <button class="btn" id="button-chart" onclick="AllowElement('#inputs-chart');"
                     title="Gere os gráficos das funções">
                     <i class="fas fa-chart-line"></i></button>
                   <!-- fill inputs with zero -->
@@ -95,8 +96,7 @@
       </div>
     </div>
 
-    <div class="result">
-      <div id="result-div" class="result-content"></div>
+    <div class="result" id="result-div">
     </div>
     <div id="inputs-chart" class="content" style="display: none;">
       <div class="charts-config" style="display: flex; width: 100%; justify-content: space-between;">
@@ -118,6 +118,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.js"></script>
   <script src="./src/js/functions.js"></script>
   <script src="./src/js/methods.js"></script>
+  <script>
+    Array.prototype.range = function ranger(start, count, step = 1) {
+      if (arguments.length == 1) {
+        count = start;
+        start = 0;
+      }
+      var array = [];
+      for (var i = 0; start + i < count; i += step) {
+        array.push(start + i);
+      }
+      return array;
+    }
+  </script>
 </body>
 
 </html>
