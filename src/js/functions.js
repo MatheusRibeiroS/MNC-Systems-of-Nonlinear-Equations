@@ -229,7 +229,7 @@ const showResult = (objectResult) => {
  * @param { Number } n - Quantity of equations
  */
 const resize = (n) => {
-  if (n && n >= 2 && !isNaN(n)) {
+  if (n && n >= 2 && !isNaN(n) && n <= 10) {
     n++;
     const divTable = document.querySelector(".config-table");
     const table = document.querySelector("#input-table");
@@ -265,7 +265,7 @@ const resize = (n) => {
     });
     return;
   }
-  alert("inputs inválidos");
+  alert("inputs inválidos, insira um valor entre 2 e 10");
   return;
 };
 
