@@ -174,14 +174,20 @@ const genChart = ({ func, func_original, a, b }) => {
  * Function that captures user input data.
  * @return { object } Object with input data.
  */
-const getInput = () => ({
-  n: parseInt(document.querySelector("#n").value),
-  func: formattingExpression(document.querySelector("#function").value),
-  func_original: document.querySelector("#function").value,
-  a: parseInt(document.querySelector("#a").value),
-  b: parseInt(document.querySelector("#b").value),
-  epsilon: Number(document.querySelector("#epsilon").value),
-});
+function getInput() {
+  n = Number(document.querySelector("#n").value);
+  k = Number(document.querySelector("#k").value);
+  epsilon = Number(document.querySelector("#epsilon").value);
+  equation = new Array(n);
+  y = new Array(n);
+  estimative = new Array(n);
+  for (let i = 0; i < n; i++) {  
+    equation[i] = formattingExpression(document.querySelector(`input-${i}-1`).value);
+    y[i] = Number(document.querySelector(`input-${i}-2`).value);
+    estimative[i] = Number(document.querySelector(`input-${i}-3`).value);
+  }
+  return {n, k, epsilon, equation, y, estimative};
+};
 
 /**
  * Which enables visualization in the application.
@@ -198,11 +204,10 @@ const showResult = (objectResult) => {
   Object.entries(objectResult).forEach(([key, value]) => {
     content += `<tr>
             <td>${value.methodName}</td>
-            <td>${
-              typeof value.value != "string"
-                ? value.value.toFixed(9)
-                : value.value
-            }</td>
+            <td>${typeof value.value != "string"
+        ? value.value.toFixed(9)
+        : value.value
+      }</td>
           </tr>`;
   });
 

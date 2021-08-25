@@ -1,30 +1,15 @@
-let equations, iterations, estimate, n, error;
 
-function calculate() {
-  equations = new Array(n);
-  estimate = new Array(n);
-  for (let i = 0; i < n; i++) {
-    let input = document.getElementById(`input-${i}-1`).value;
-    let result = document.getElementById(`input-${i}-2`).value;
-    let inputTable = document.getElementById(`input-${i}-3`).value;
-    if (!input) {
-      alert(`Insira uma equação na área ${i + 1}.`);
-      return;
-    }
-    if (!result) {
-      alert(`Insira uma equação como resultado da expressão ${i + 1}.`);
-      return;
-    }
-    equations[i] = new Function(`x`, `return ` + formattingExpression(input) + `-(` + formattingExpression(result) + `);`);
 
-    // fazer o campo de estimativa no HTML
-    estimate[i] = parseFloat(document.getElementById(inputTable).value);
-    if (isNaN(estimate[i])) {
-      alert(`Insira um número real como estimativa inicial do x[${i}]`);
-      return;
-    }
+function calculate(n, iteration, error, equation, y, estimative) {
+  if (!equation) {
+    alert(`Insira uma equação na área ${i + 1}.`);
+    return;
   }
-  showResult(gaussMethod());
+  if (!y) {
+    alert(`Insira uma equação como resultado da expressão ${i + 1}.`);
+    return;
+  }
+  showResult(gaussMethod(equation, estimative, error, iteration, n));
 }
 
 
@@ -117,7 +102,7 @@ function totalPivoGauss(A, b) {
   return x;
 }
 
-function gaussMethod() {
+function gaussMethod(equations, estimate, iterations, error, n) {
   let X = new Array(n);
   let estimateAux, aux;
 
