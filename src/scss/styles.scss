@@ -90,6 +90,7 @@ div::-webkit-scrollbar-thumb {
 
 .content {
   margin: 0 0 1em 0;
+  width: 100%;
   padding: 1em;
   border-radius: 10px;
   background-color: #eee;
@@ -117,6 +118,15 @@ div::-webkit-scrollbar-thumb {
 
 .hahau {
   width: 460px;
+}
+
+.charts-config {
+  & > input:not(:first-child) {
+    margin: 0 0.5em;
+  }
+  & > button {
+    margin: 0;
+  }
 }
 
 .container .checkmark:after {

@@ -75,7 +75,7 @@
                 </div>
                 <div class="buttons">
                   <!-- genChart button-->
-                  <button class="btn" id="button-chart" onclick="genChart(getInput())"
+                  <button class="btn" id="button-chart" onclick="AllowDiv('#inputs-chart');"
                     title="Gere os gráficos das funções">
                     <i class="fas fa-chart-line"></i></button>
                   <!-- fill inputs with zero -->
@@ -98,7 +98,14 @@
     <div class="result" id="result-div">
       <div class="result-content"></div>
     </div>
-    <div id="inputs-chart"></div>
+    <div id="inputs-chart" class="content" style="display: none;">
+      <div class="charts-config" style="display: flex; width: 100%; justify-content: space-between;">
+        <input type="number" id="a" placeholder="A" />
+        <input type="number" id="b" placeholder="B" />
+        <button class="btn" id="button-chart-confirm" onclick="genChart(getData())">
+          <i class="fas fa-chart-line"></i></button>
+      </div>
+    </div>
     <div id="container-chart" class="chart" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
       <div id="chart-div">
       </div>

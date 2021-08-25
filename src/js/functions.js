@@ -326,7 +326,7 @@ const resize = (n) => {
         else if (j == 2)
           cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="${i}" />`;
         else if (j == 3)
-        cell.innerHTML = `<input type="number" id="input-${i}-${j}" value="${i}" />`;
+          cell.innerHTML = `<input type="number" id="input-${i}-${j}" value="${i}" />`;
         row[i + 1].appendChild(cell);
       });
       table.appendChild(row[i]);
@@ -364,4 +364,9 @@ const getData = () => {
     a: document.querySelector("#a").value,
     b: document.querySelector("#b").value,
   };
+};
+
+const AllowDiv = (target) => {
+  const div = document.querySelector(target);
+  div.style.display = "unset";
 };

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "npx node-sass -w ./src/scss -o ./src/css"
+    "scss": "npx node-sass ./src/scss -o ./src/css",
+    "build-css": "node-sass ./src/scss -o ./src/css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,8 @@
   "homepage": "https://github.com/MatheusRibeiroS/MNC-Systems-of-Nonlinear-Equations#readme",
   "dependencies": {
     "node-sass": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
