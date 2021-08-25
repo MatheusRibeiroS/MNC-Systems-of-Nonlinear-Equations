@@ -61,8 +61,13 @@
     width: 100%;
     & tbody {
       tr {
-        & > td:not(:first-child) input {
-          margin-left: 0.5em;
+        & > td:not(:nth-child(1)):not(:nth-child(2)) input {
+          width: 80px;
+        }
+        & > td:not(:first-child) {
+          & input {
+            margin-left: 0.5em;
+          }
         }
         & > td:first-child {
           padding: 0 0.5em;

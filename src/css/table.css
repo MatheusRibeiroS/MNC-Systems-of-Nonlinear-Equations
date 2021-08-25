@@ -36,6 +36,8 @@
     margin: 1em 0;
     border-collapse: collapse;
     width: 100%; }
+    .config-table table tbody tr > td:not(:nth-child(1)):not(:nth-child(2)) input {
+      width: 80px; }
     .config-table table tbody tr > td:not(:first-child) input {
       margin-left: 0.5em; }
     .config-table table tbody tr > td:first-child {

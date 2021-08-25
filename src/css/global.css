@@ -29,7 +29,7 @@ body {
 input {
   border: none;
   background: #fafafa;
-  color: 000;
+  color: #000;
   border-radius: 2px;
   padding: 10px; }
   input:disabled {

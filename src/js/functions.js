@@ -234,7 +234,13 @@ const resize = (n) => {
     table.innerHTML = "";
 
     const row = new Array(n + 1),
-      labels = ["i", "Equações f(x)", "Y", "X"];
+      labels = ["i", "Equações f(x)", "Y", "X Estimado"],
+      input_type = [
+        `<span>%INDEX1%</span>`,
+        `<input type="text" id="input_FUNCTION-%INDEX1%-%INDEX2%" value="x^2 + %INDEX1%"/>`,
+        `<input type="text" id="input_Y-%INDEX1%-%INDEX2%" value="%INDEX1%"/>`,
+        `<input type="number" id="input_X-%INDEX1%-%INDEX2%" value="%INDEX1%"/>`,
+      ];
 
     ArrayFrom(n + 1).forEach((i) => {
       row[i] = document.createElement("tr");
@@ -249,13 +255,9 @@ const resize = (n) => {
     row.forEach((_, i) => {
       ArrayFrom(labels.length).forEach((j) => {
         cell = document.createElement("td");
-        if (j == 0) cell.innerHTML = `<span>${i}</span>`;
-        else if (j == 1)
-          cell.innerHTML = `<input type="text" id="input_function-${i}-${j}" value="x^2 + ${i}"/>`;
-        else if (j == 2)
-          cell.innerHTML = `<input type="text" id="input_Y-${i}-${j}" value="${i}"/>`;
-        else if (j == 3)
-          cell.innerHTML = `<input type="number" id="input_X-${i}-${j}" value="${i}"/>`;
+        cell.innerHTML = input_type[j]
+          .replace(/%index1%/gi, i - 1)
+          .replace(/%index2%/gi, j - 1);
         if (i != 0) row[i].appendChild(cell);
       });
       table.appendChild(row[i]);
