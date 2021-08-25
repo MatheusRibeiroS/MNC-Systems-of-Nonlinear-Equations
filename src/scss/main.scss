@@ -1,0 +1,8 @@
+// Global style of items and styles
+@import "./global.scss";
+
+// Import all files in the src\scss folder
+@import "./modal.scss";
+@import "./styles.scss";
+@import "./table.scss";
+@import "./toggles.scss";
