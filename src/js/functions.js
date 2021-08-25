@@ -175,11 +175,11 @@ const genChart = ({ func, func_original, a, b }) => {
  * @return { object } Object with input data.
  */
 const getInput = () => ({
-  //n : Number(document.querySelector("#n").value);
+  n: parseInt(document.querySelector("#n").value),
   func: formattingExpression(document.querySelector("#function").value),
   func_original: document.querySelector("#function").value,
-  a: Number(document.querySelector("#a").value),
-  b: Number(document.querySelector("#b").value),
+  a: parseInt(document.querySelector("#a").value),
+  b: parseInt(document.querySelector("#b").value),
   epsilon: Number(document.querySelector("#epsilon").value),
 });
 
