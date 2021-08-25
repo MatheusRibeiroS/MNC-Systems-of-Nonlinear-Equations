@@ -1,5 +1,3 @@
-
-
 function calculate(n, iteration, error, equation, y, estimative) {
   if (!equation) {
     alert(`Insira uma equação na área ${i + 1}.`);
@@ -9,9 +7,11 @@ function calculate(n, iteration, error, equation, y, estimative) {
     alert(`Insira uma equação como resultado da expressão ${i + 1}.`);
     return;
   }
-  showResult(gaussMethod(equation, estimative, error, iteration, n));
+  showResult(
+    "result-div",
+    gaussMethod(equation, estimative, error, iteration, n)
+  );
 }
-
 
 function subtractVector(a, b) {
   let vectorSize = a.length;
@@ -33,7 +33,7 @@ function GradientMatrix() {
       aux[j] -= 2 * h;
       X[i][j] -= equations[i](aux);
       aux[j] += h;
-      X[i][j] /= (2 * h);
+      X[i][j] /= 2 * h;
     }
   }
   return X;
@@ -45,7 +45,8 @@ function totalPivoGauss(A, b) {
     xPosition.push(i);
   }
   for (let i = 0; i < n; i++) {
-    let line = i, column = i;
+    let line = i,
+      column = i;
     for (let j = i + 1; j < n; j++) {
       for (let k = i + 1; k < n; k++) {
         if (Math.abs(A[j][k]) > Math.abs(A[line][column])) {
@@ -119,8 +120,7 @@ function gaussMethod(equations, estimate, iterations, error, n) {
     iterations--;
     aux = false;
     for (let i = 0; i < n; i++)
-      if (Math.abs(estimate[i] - estimateAux[i]) > error)
-        aux = true;
+      if (Math.abs(estimate[i] - estimateAux[i]) > error) aux = true;
   } while (iterations > 0 && aux);
   return estimate;
 }

@@ -183,7 +183,8 @@ const getInput = () => ({
     ...document.querySelectorAll("tbody tr td:nth-child(2) input"),
   ].map((el) => el.value),
   y: [...document.querySelectorAll("tbody tr td:nth-child(3) input")].map(
-    (el) => Number(el.value)),
+    (el) => Number(el.value)
+  ),
   estimate: [
     ...document.querySelectorAll("#input-table td:nth-child(4) input"),
   ].map((el) => Number(el.value)),
@@ -194,24 +195,21 @@ const getInput = () => ({
 
 /**
  * Which enables visualization in the application.
- * @param { Object } Object with the results of the integrals obtained by the methods.
+ * @param { Array } Array with the results.
  */
-const showResult = (objectResult) => {
-  const resultDiv = document.querySelector("#result-div");
-  resultDiv.innerHTML = "";
+const showResult = (target, arrayResult) => {
+  const targetElement = document.querySelector(target);
+  targetElement.innerHTML = "";
   let content = "";
 
   /*
    * Creates table contents, from the results object.
    */
-  Object.entries(objectResult).forEach(([key, value]) => {
+  arrayResult.forEach((el, index) => {
     content += `<tr>
-            <td>${value.methodName}</td>
-            <td>${typeof value.value != "string"
-        ? value.value.toFixed(9)
-        : value.value
-      }</td>
-          </tr>`;
+                  <td>${func[index]}</td>
+                  <td>${el}</td>
+                </tr>`;
   });
 
   const resultTable = document.createElement("table");
@@ -219,16 +217,16 @@ const showResult = (objectResult) => {
   resultTable.innerHTML = `
     <thead>
       <tr>
-        <th>Método</th>
-        <th>Resultado</th>
+        <th>Função</th>
+        <th>Valor de X</th>
       </tr>
     </thead>
     <tbody>
       ${content}
     </tbody>
   `;
-  resultDiv.appendChild(resultTable);
-  resultDiv.style.display = "block";
+  targetElement.appendChild(resultTable);
+  targetElement.style.display = "block";
 };
 
 /**
