@@ -308,3 +308,40 @@ const AllowElement = (target) => {
     ? (Element.style.display = "none")
     : (Element.style.display = "block");
 };
+
+const createDatasets = (n, labels, { func, func_original, a, b }) => {
+  if (func && func_original && typeof a === "number" && typeof a === "number") {
+    const functions = func.map((el) => createMathFunction(el, "x"));
+    // For each N functions Creates an array inside Data_Result with the functions values ​​in point X
+    const data_result = functions.map((f) => {
+      const results = [];
+      labels.forEach((x) => {
+        results.push(f(x));
+      });
+      return results;
+    });
+
+    const datasets = ArrayFrom(n).map((index) => {
+      const color = generateHexaColor();
+      return {
+        type: "line",
+        label: `${func_original[index]}`,
+        borderColor: color,
+        backgroundColor: color,
+        cubicInterpolationMode: "monotone",
+        borderWidth: 2,
+        radius: 0,
+        data: data_result[index],
+      };
+    });
+    return datasets;
+  }
+  alert("inputs inválidos");
+  return;
+};
+
+const generateHexaColor = () =>
+  "#" +
+  parseInt(Math.random() * 0xffffff)
+    .toString(16)
+    .padStart(6, "0");
