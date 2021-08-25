@@ -182,76 +182,6 @@ const getInput = () => ({
   epsilon: Number(document.querySelector("#epsilon").value),
 });
 
-/**
- * Função encaminha a chamada dos métodos conforme a seleção do Usuário.
- * @returns { Object } Object with the results of the integrals obtained by the methods.
- */
-const whichSelected = () => {
-  const result = {};
-  const onlySelects = [...document.querySelectorAll(".toggle-control input")]
-    .map((el) => el.checked && Number(el.value))
-    .filter(Boolean);
-
-  onlySelects.length != 0 &&
-    onlySelects.forEach((el) => {
-      switch (el) {
-        case 1:
-          // Retângulos à esquerda
-          // ------------------------
-          result.leftRectangles = {
-            methodName: "Retângulos à esquerda",
-            value: leftRectangleRuleMethod(getInput()),
-          };
-          break;
-
-        case 2:
-          // Retângulos à direita
-          // ------------------------
-          result.rightRectangles = {
-            methodName: "Retângulos à direita",
-            value: rightRectangleRuleMethod(getInput()),
-          };
-          break;
-
-        case 3:
-          // Regra dos Trapézios
-          // ------------------------
-          result.trapezoids = {
-            methodName: "Regra dos Trapézios",
-            value: trapezoidolRuleMethod(getInput()),
-          };
-          break;
-
-        case 4:
-          // Regra 1/3 de Simpson
-          // ------------------------
-          result.simpson13 = {
-            methodName: "Regra 1/3 de Simpson",
-            value: simpson13RuleMethod(getInput()),
-          };
-          break;
-
-        case 5:
-          // Regra 3/8 de Simpson
-          // ------------------------
-          result.simpson38 = {
-            methodName: "Regra 3/8 de Simpson",
-            value: simpson38RuleMethod(getInput()),
-          };
-          break;
-
-        case 6:
-          // Quadratura de Gauss
-          // ------------------------
-          result.quadrature = {
-            methodName: "Quadratura de Gauss",
-            value: GaussQuadratureMethod(getInput()),
-          };
-          break;
-      }
-    });
-  return result;
-};
 
 /**
  * Which enables visualization in the application.
@@ -322,11 +252,11 @@ const resize = (n) => {
         cell = document.createElement("td");
         if (j == 0) cell.innerHTML = `<span>${i}</span>`;
         else if (j == 1)
-          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="x^2 + ${i}" />`;
+          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="x^2 + ${i}" style="margin-right: 5em"/>`;
         else if (j == 2)
-          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="${i}" />`;
+          cell.innerHTML = `<input type="text" id="input-${i}-${j}" value="${i}" style="margin-right: 5em"/>`;
         else if (j == 3)
-          cell.innerHTML = `<input type="number" id="input-${i}-${j}" value="${i}" />`;
+          cell.innerHTML = `<input type="number" id="input-${i}-${j}" value="${i}" style="margin-right: 5em"/>`;
         row[i + 1].appendChild(cell);
       });
       table.appendChild(row[i]);
