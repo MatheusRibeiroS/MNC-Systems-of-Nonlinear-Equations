@@ -174,20 +174,23 @@ const genChart = ({ func, func_original, a, b }) => {
  * Function that captures user input data.
  * @return { object } Object with input data.
  */
-function getInput() {
-  n = Number(document.querySelector("#n").value);
-  k = Number(document.querySelector("#k").value);
-  epsilon = Number(document.querySelector("#epsilon").value);
-  equation = new Array(n);
-  y = new Array(n);
-  estimative = new Array(n);
-  for (let i = 0; i < n; i++) {  
-    equation[i] = formattingExpression(document.querySelector(`input-${i}-1`).value);
-    y[i] = Number(document.querySelector(`input-${i}-2`).value);
-    estimative[i] = Number(document.querySelector(`input-${i}-3`).value);
-  }
-  return {n, k, epsilon, equation, y, estimative};
-};
+const getInput = () => ({
+  n: parseInt(document.querySelector("#n").value),
+  func: [...document.querySelectorAll("tbody tr td:nth-child(2) input")].map(
+    (el) => formattingExpression(el.value)
+  ),
+  func_original: [
+    ...document.querySelectorAll("tbody tr td:nth-child(2) input"),
+  ].map((el) => el.value),
+  y: [...document.querySelectorAll("tbody tr td:nth-child(3) input")].map(
+    (el) => Number(el.value)),
+  estimate: [
+    ...document.querySelectorAll("#input-table td:nth-child(4) input"),
+  ].map((el) => Number(el.value)),
+  epsilon: Number(document.querySelector("#epsilon").value),
+  a: parseInt(document.querySelector("#a").value),
+  b: parseInt(document.querySelector("#b").value),
+});
 
 /**
  * Which enables visualization in the application.
