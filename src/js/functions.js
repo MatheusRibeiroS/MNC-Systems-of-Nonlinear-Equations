@@ -175,6 +175,7 @@ const genChart = ({ func, func_original, a, b }) => {
  * @return { object } Object with input data.
  */
 const getInput = () => ({
+  //n : Number(document.querySelector("#n").value);
   func: formattingExpression(document.querySelector("#function").value),
   func_original: document.querySelector("#function").value,
   a: Number(document.querySelector("#a").value),
@@ -229,6 +230,7 @@ const showResult = (objectResult) => {
  */
 const resize = (n) => {
   if (n && n >= 2 && !isNaN(n)) {
+    n++;
     const divTable = document.querySelector(".config-table");
     const table = document.querySelector("#input-table");
     table.innerHTML = "";
