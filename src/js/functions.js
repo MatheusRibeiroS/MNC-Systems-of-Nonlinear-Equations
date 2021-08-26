@@ -87,8 +87,11 @@ const selectAll = () =>
  * Function that generates graphs.
  * @param { info } object of the chart data.
  */
-const genChart = ({ func, func_original, a, b }) => {
-  if (func || a || b) {
+const genChart = ({ n, func, func_original, a, b }) => {
+  const labels = [].range(a, b, 0.05),
+    dataset = getDatasets(labels, { n, func, func_original, a, b });
+
+  if (dataset.length > 0) {
     const chartDiv = document.querySelector("#chart-div");
     const containerDiv = document.querySelector("#container-chart");
     const chartCanvas = document.createElement("canvas");
@@ -98,24 +101,9 @@ const genChart = ({ func, func_original, a, b }) => {
     chartDiv.appendChild(chartCanvas);
     containerDiv.style.display = "block";
 
-    const labels = [].range(a, b, 0.25);
-    const f = createMathFunction(func, "x");
-    const data_result = labels.map((x) => f(x));
-
     const data = {
-      labels: labels,
-      datasets: [
-        {
-          type: "line",
-          label: `F(x) = ${func_original[i]}`,
-          borderColor: "#222229",
-          backgroundColor: "#222229",
-          cubicInterpolationMode: "monotone",
-          borderWidth: 2,
-          radius: 0,
-          data: labels.map((x) => f(x)),
-        },
-      ],
+      labels: labels.map((el) => el.toFixed(2)),
+      datasets: dataset,
     };
 
     const config = {
@@ -154,11 +142,12 @@ const genChart = ({ func, func_original, a, b }) => {
         },
       },
     };
-
+  
     new Chart(chartCanvas, config);
     return;
   }
   alert("Entradas inválidas");
+  return;
 };
 
 /**
@@ -232,7 +221,7 @@ const showResult = (target, arrayResult) => {
  * Function for creation of the entries table
  * @param { Number } n - Quantity of equations
  */
-const resize = (n) => {
+function resize (n) {
   if (n && n >= 2 && !isNaN(n) && n <= 10) {
     AllowElement(".config-table");
     const table = document.querySelector("#input-table");
@@ -290,18 +279,6 @@ const ArrayFrom = (...args) =>
     ? Array.from({ length: args[0] }, (_, k) => k)
     : Array.from({ length: args[1] - args[0] + 1 }, (_, k) => k + args[0]);
 
-const getData = () => {
-  const functions = [
-    ...document.querySelectorAll("#input-table td:nth-child(2) input"),
-  ].map((el) => el.value);
-
-  return {
-    functions,
-    a: document.querySelector("#a").value,
-    b: document.querySelector("#b").value,
-  };
-};
-
 const AllowElement = (target) => {
   const Element = document.querySelector(target);
   Element.style.display == "block"
@@ -309,8 +286,8 @@ const AllowElement = (target) => {
     : (Element.style.display = "block");
 };
 
-const createDatasets = (n, labels, { func, func_original, a, b }) => {
-  if (func && func_original && typeof a === "number" && typeof a === "number") {
+const getDatasets = (labels, { n, func, func_original, a, b }) => {
+  if (func && func_original && typeof a === "number" && typeof b === "number") {
     const functions = func.map((el) => createMathFunction(el, "x"));
     // For each N functions Creates an array inside Data_Result with the functions values ​​in point X
     const data_result = functions.map((f) => {

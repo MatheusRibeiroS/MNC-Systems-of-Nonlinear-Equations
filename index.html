@@ -33,12 +33,12 @@
           <div class="config">
             <div class="input-menu">
               <input type="number" id="n" min="2" max="10" step="1" placeholder="Quantidade de equações (n)"
-                onchange="resize(parseInt(document.querySelector('#n').value))" />
+                onchange="resize(parseInt(document.querySelector('#n').value))" required />
               <div>
-                <input type="number" id="k" min="10" max="100" step="5" placeholder="Iterações (k)"
-                  style="width: 35%;" />
+                <input type="number" id="k" min="10" max="100" step="5" placeholder="Iterações (k)" style="width: 35%;"
+                  required />
                 <input type="number" id="epsilon" min="0.01" max="0.0001" step="0.0001"
-                  placeholder="Erro Máximo (&epsilon;)" />
+                  placeholder="Erro Máximo (&epsilon;)" required />
               </div>
             </div>
             <!-- Calculation Buttons -->
@@ -54,7 +54,7 @@
               <button class="btn" id="button-clear" title="Limpe todos as entradas acima" onclick="clearInputs()"><i
                   class="fas fa-trash"></i></button>
               <!-- Calculate Button -->
-              <button class="btn" id="button-calculate" style="width: 100%" title="Botão para executar os cálculos"
+              <button class="btn" type="submit" id="button-calculate" style="width: 100%" title="Botão para executar os cálculos"
                 onclick="calculate()">
                 <i class="fas fa-calculator"></i> Calcular </button>
             </div>
@@ -102,7 +102,7 @@
       <div class="charts-config" style="display: flex; width: 100%; justify-content: space-between;">
         <input type="number" id="a" placeholder="A" />
         <input type="number" id="b" placeholder="B" />
-        <button class="btn" id="button-chart-confirm" onclick="genChart(getData())">
+        <button class="btn" id="button-chart-confirm" onclick="genChart(getInput())">
           <i class="fas fa-chart-line"></i></button>
       </div>
     </div>
