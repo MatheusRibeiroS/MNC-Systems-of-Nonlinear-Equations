@@ -169,6 +169,7 @@ const getInput = () => ({
     ...document.querySelectorAll("#input-table td:nth-child(4) input"),
   ].map((el) => Number(el.value)),
   epsilon: Number(document.querySelector("#epsilon").value),
+  iterations: parseInt(document.querySelector("#k").value),
   a: parseInt(document.querySelector("#a").value),
   b: parseInt(document.querySelector("#b").value),
 });
@@ -232,7 +233,7 @@ function resize (n) {
       input_type = [
         `<span>%INDEX1%</span>`,
         `<input type="text" id="input_FUNCTION-%INDEX1%-%INDEX2%" value="x^2 + %INDEX1%"/>`,
-        `<input type="text" id="input_Y-%INDEX1%-%INDEX2%" value="%INDEX1%"/>`,
+        `<input type="number" id="input_Y-%INDEX1%-%INDEX2%" value="%INDEX1%"/>`,
         `<input type="number" id="input_X-%INDEX1%-%INDEX2%" value="%INDEX1%"/>`,
       ];
 

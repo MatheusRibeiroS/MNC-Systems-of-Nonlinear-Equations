@@ -1,16 +1,23 @@
-function calculate(n, iteration, error, equation, y, estimative) {
-  if (!equation) {
-    alert(`Insira uma equação na área ${i + 1}.`);
+function calculate() {
+
+  ({ n, epsilon, iterations, func, y, estimate } = getInput());
+
+  if (func.length <= 0) {
+    alert(`Insira uma equação na área.`);
     return;
   }
-  if (!y) {
-    alert(`Insira uma equação como resultado da expressão ${i + 1}.`);
+  if (y.length <= 0) {
+    alert(`Insira um resultado.`);
     return;
   }
-  showResult(
-    "result-div",
-    gaussMethod(equation, estimative, error, iteration, n)
-  );
+  for(let i = 0;  i<n ; i++) {
+  func[i] = createMathFunction(`${func[i]} - (${y[i]})`,"x");
+  }
+  if (estimate.length <= 0) {
+    alert("Inserir um número real como estimativa inicial");
+    return;
+  }
+  showResult("#result-div", gaussMethod(n, epsilon, iterations, func, estimate));
 }
 
 function subtractVector(a, b) {
@@ -21,7 +28,7 @@ function subtractVector(a, b) {
   return a;
 }
 
-function GradientMatrix() {
+function GradientMatrix(n, func, estimate) {
   let X = new Array(n);
   let aux = estimate;
   let h = 1e-10;
@@ -29,9 +36,9 @@ function GradientMatrix() {
     X[i] = new Array(n);
     for (let j = 0; j < n; j++) {
       aux[j] += h;
-      X[i][j] = equations[i](aux);
+      X[i][j] = func[i](aux);
       aux[j] -= 2 * h;
-      X[i][j] -= equations[i](aux);
+      X[i][j] -= func[i](aux);
       aux[j] += h;
       X[i][j] /= 2 * h;
     }
@@ -94,33 +101,33 @@ function totalPivoGauss(A, b) {
     x.push(null);
   }
   for (let i = n - 1; i > -1; i--) {
-    let R = b[i];
+    let result = b[i];
     for (let j = i + 1; j < n; j++) {
-      R -= x[xPosition[j]] * A[i][j];
+      result -= x[xPosition[j]] * A[i][j];
     }
-    x[xPosition[i]] = R / A[i][i];
+    x[xPosition[i]] = result / A[i][i];
   }
   return x;
 }
 
-function gaussMethod(equations, estimate, iterations, error, n) {
+function gaussMethod(n, epsilon, iterations, func, estimate) {
   let X = new Array(n);
   let estimateAux, aux;
 
   for (let i = 0; i < n; i++) {
-    X[i] = equations[i](estimate);
+    X[i] = func[i](estimate);
   }
-  estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(), X));
+  estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(n, func, estimate), X));
   do {
     estimateAux = [...estimate];
     for (let i = 0; i < n; i++) {
-      X[i] = equations[i](estimate);
+      X[i] = func[i](estimate);
     }
-    estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(), X));
+    estimate = subtractVector(estimate, totalPivoGauss(GradientMatrix(n, func, estimate), X));
     iterations--;
     aux = false;
     for (let i = 0; i < n; i++)
-      if (Math.abs(estimate[i] - estimateAux[i]) > error) aux = true;
+      if (Math.abs(estimate[i] - estimateAux[i]) > epsilon) aux = true;
   } while (iterations > 0 && aux);
   return estimate;
 }
