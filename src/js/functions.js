@@ -189,7 +189,8 @@ const showResult = (target, arrayResult) => {
    */
   arrayResult.forEach((el, index) => {
     content += `<tr>
-                  <td><span>\\[ ${func_original[index]} \\]</span></td>
+                  <td><span>\\[ ${func_original[index]
+                    .replace(/x\[(\d+)]/gi, "x_{$1}")} \\]</span></td>
                   <td><span>\\[ ${el} \\]</span></td>
                 </tr>`;
   });
@@ -330,5 +331,5 @@ const chartButton = () => {
     document.querySelector("#inputs-chart").style.display == "block") ??
     AllowElement("#container-chart");
   if (document.querySelector("#container-chart").style.display == "block")
-    document.querySelector("#container-chart").style.display = "none"
+    document.querySelector("#container-chart").style.display = "none";
 };
