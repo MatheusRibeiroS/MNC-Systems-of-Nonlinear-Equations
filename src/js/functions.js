@@ -142,7 +142,7 @@ const genChart = ({ n, func, func_original, a, b }) => {
         },
       },
     };
-  
+
     new Chart(chartCanvas, config);
     return;
   }
@@ -222,7 +222,7 @@ const showResult = (target, arrayResult) => {
  * Function for creation of the entries table
  * @param { Number } n - Quantity of equations
  */
-function resize (n) {
+function resize(n) {
   if (n && n >= 2 && !isNaN(n) && n <= 10) {
     AllowElement(".config-table");
     const table = document.querySelector("#input-table");
@@ -233,8 +233,8 @@ function resize (n) {
       input_type = [
         `<span>%INDEX1%</span>`,
         `<input type="text" id="input_FUNCTION-%INDEX1%-%INDEX2%" value="x^2 + %INDEX1%"/>`,
-        `<input type="number" id="input_Y-%INDEX1%-%INDEX2%" value="%INDEX1%"/>`,
-        `<input type="number" id="input_X-%INDEX1%-%INDEX2%" value="%INDEX1%"/>`,
+        `<input type="number" id="input_Y-%INDEX1%-%INDEX2%" value="0"/>`,
+        `<input type="number" id="input_X-%INDEX1%-%INDEX2%" value="1"/>`,
       ];
 
     ArrayFrom(n + 1).forEach((i) => {
@@ -261,7 +261,7 @@ function resize (n) {
   }
   alert("inputs inválidos, insira um valor entre 2 e 10");
   return;
-};
+}
 
 /**
  * Função para preencher com inputs com o conteúdo.
@@ -323,3 +323,12 @@ const generateHexaColor = () =>
   parseInt(Math.random() * 0xffffff)
     .toString(16)
     .padStart(6, "0");
+
+const chartButton = () => {
+  AllowElement("#inputs-chart");
+  (document.querySelector("#container-chart").style.display == "none" &&
+    document.querySelector("#inputs-chart").style.display == "block") ??
+    AllowElement("#container-chart");
+  if (document.querySelector("#container-chart").style.display == "block")
+    document.querySelector("#container-chart").style.display = "none"
+};

@@ -38,12 +38,14 @@
           padding: 5px 15px;
           white-space: nowrap;
 
-          &:first-child {
-            font-weight: bold;
+          mjx-container {
+            font-size: 110% !important;
           }
+        }
+        & td:first-child {
 
-          &:last-child {
-            text-align: center;
+          mjx-container {
+            text-align: left !important;
           }
         }
       }

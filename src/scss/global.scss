@@ -29,6 +29,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  & > div {
+    width: 460px;
+  }
 }
 
 input {
